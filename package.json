@@ -1,19 +1,23 @@
 {
-  "name": "@nullish/joinjson",
-  "version": "1.3.0",
-  "description": "Node script to join a set of JSON files into a single JSON file. Each individual file is an object.",
-  "main": "joinjson.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/nullish/joinjson.git"
-  },
+  "name": "joinxmlfiles",
+  "version": "1.0.0",
+  "description": "Simple NodeJS tool for joining local XML files",
+  "main": "demo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullish/joinxmlfiles.git"
+  },
   "keywords": [
-    "json"
+    "node",
+    "xml"
   ],
   "author": "Nullish",
-  "license": "MIT-0",
-  "dependencies": {}
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nullish/joinxmlfiles/issues"
+  },
+  "homepage": "https://github.com/nullish/joinxmlfiles#readme"
 }
