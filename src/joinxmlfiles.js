@@ -6,7 +6,7 @@ const path = require('path')
 	* @param {boolean} writeout - TRUE if output should be written to a file.
 
 */
-const joinjson = (...args) => {
+const joinxmlfiles = (...args) => {
 	// Joins multiple JSON files into a single JSON fomrat string. Optionally written to a file.
 	const dir = args[0] || process.argv[2]
 	const rawData = getDataFromFiles(dir);
@@ -49,4 +49,4 @@ function writeFile (dir, manifest) {
 	fs.writeFileSync(filePath, manifest)
 }
 
-module.exports = joinjson
+module.exports = joinxmlfiles
