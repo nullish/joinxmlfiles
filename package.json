@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/nullish/joinxmlfiles/issues"
   },
-  "homepage": "https://github.com/nullish/joinxmlfiles#readme"
+  "homepage": "https://github.com/nullish/joinxmlfiles#readme",
+  "dependencies": {
+    "@xmldom/xmldom": "^0.7.5"
+  }
 }
