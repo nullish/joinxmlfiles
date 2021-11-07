@@ -1,45 +1,41 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
+const { DOMParser, DOMImplementation } = require('@xmldom/xmldom');
 
 /* **
-	* @param {string} dir - directory of JSON files
+	* @param {string} dir - directory of XML files
 	* @param {boolean} writeout - TRUE if output should be written to a file.
+
+	xmldom documentation: https://github.com/xmldom/xmldom
 
 */
 const joinxmlfiles = (...args) => {
-	// Joins multiple JSON files into a single JSON fomrat string. Optionally written to a file.
+	// Joins multiple XML files
 	const dir = args[0] || process.argv[2]
 	const rawData = getDataFromFiles(dir);
 	// Act on argument to suppress file output
 	if (args[1] !== "no-file") {
 		writeFile(dir, rawData);
 	}
-	return JSON.parse(rawData);
+	return xmlJoined;
 }
 
-function getDataFromFiles(dir) {
-	// Loads multiple JSON files as strings into a single variable
+const getDataFromFiles = (dir) => {
+	let xmlJoined = new DOMImplementation().createDocument();
 	const fileNames = fs.readdirSync(dir);
-	var data = "[";
-	var i = 0;
-	//console.log("Files joined:");
 	fileNames.forEach(fileName => {
 		
-		// Process JSON file only if it's not zero length
-		var stats = fs.statSync(`${dir}${fileName}`);
-		var fSize = stats["size"];
-		if (fSize > 0 && fileName.match(/\.json$/g)) {
-			//console.log(fileName);
-			var fileContents = JSON.parse(fs.readFileSync(`${dir}${fileName}`));
-			var jString = JSON.stringify(fileContents);
-			var jObj = `${jString},`;
-			data += jObj;
+		// Process XML file only if it's not zero length
+		const stats = fs.statSync(`${dir}${fileName}`);
+		const fSize = stats["size"];
+		if (fSize > 0 && fileName.match(/\.xml$/)) {
+			const fileString = fs.readFileSync(`${dir}${fileName}`, 'utf-8');
+			const parser = new DOMParser();
+			const xmlFile = parser.parseFromString(fs.readFileSync(fileString), 'text/xml');
+			xmlJoined.appendChild(xmlFile);
 		}
-		i++;
 	});
-	// fix closing syntax
-	data = data.replace(/,$/g, "]");
-	return data;
+	return xmlJoined;
 }
 
 function writeFile (dir, manifest) {
@@ -49,4 +45,5 @@ function writeFile (dir, manifest) {
 	fs.writeFileSync(filePath, manifest)
 }
 
+joinxmlfiles();
 module.exports = joinxmlfiles
