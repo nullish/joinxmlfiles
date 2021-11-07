@@ -1,3 +1,10 @@
+/*  **** TODO *****
+
+Modify to extract first child of document, otherwise it appends multiple Document objects
+to new Document.
+
+*/
+
 const fs = require('fs');
 const path = require('path');
 const { DOMParser, DOMImplementation } = require('@xmldom/xmldom');
@@ -14,10 +21,13 @@ const joinxmlfiles = (...args) => {
 	const dir = args[0] || process.argv[2]
 	const rawData = getDataFromFiles(dir);
 	// Act on argument to suppress file output
+	/*
 	if (args[1] !== "no-file") {
 		writeFile(dir, rawData);
 	}
-	return xmlJoined;
+	*/
+	console.log(rawData);
+	return rawData;
 }
 
 const getDataFromFiles = (dir) => {
@@ -31,7 +41,7 @@ const getDataFromFiles = (dir) => {
 		if (fSize > 0 && fileName.match(/\.xml$/)) {
 			const fileString = fs.readFileSync(`${dir}${fileName}`, 'utf-8');
 			const parser = new DOMParser();
-			const xmlFile = parser.parseFromString(fs.readFileSync(fileString), 'text/xml');
+			const xmlFile = parser.parseFromString(fileString, 'text/xml');
 			xmlJoined.appendChild(xmlFile);
 		}
 	});
