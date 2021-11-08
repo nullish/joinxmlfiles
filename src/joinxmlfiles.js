@@ -1,7 +1,6 @@
 /*  **** TODO *****
 
-Modify to extract first child of document, otherwise it appends multiple Document objects
-to new Document.
+Processes lastChild node, but is duplicating. Resolve.
 
 */
 
@@ -40,12 +39,14 @@ const getDataFromFiles = (dir) => {
 		const fSize = stats["size"];
 		if (fSize > 0 && fileName.match(/\.xml$/)) {
 			const fileString = fs.readFileSync(`${dir}${fileName}`, 'utf-8');
+			console.log(fileString);
 			const parser = new DOMParser();
 			const xmlFile = parser.parseFromString(fileString, 'text/xml');
-			xmlJoined.appendChild(xmlFile);
+			const xmlBody = xmlFile.lastChild;
+			xmlJoined.appendChild(xmlBody);
 		}
 	});
-	return xmlJoined;
+	return xmlJoined.toString();
 }
 
 function writeFile (dir, manifest) {
