@@ -1,24 +1,22 @@
+/* **
+	* @param {string} dir - directory of XML files
+
+	xmldom documentation: https://github.com/xmldom/xmldom
+
+*/
 const fs = require('fs');
     const path = require('path');
     const {
         DOMParser,
         DOMImplementation
     } = require('@xmldom/xmldom');
-    
+
 /* ***** TODO
 
-- Detect child type to dynamically select xml type nodes vs process instructions
-	Do by checking if nodeType = 1 (Element)
-- Elegant write out to file
+- Access from root
+- Annotations
 
 ******
-*/
-
-/* **
-	* @param {string} dir - directory of XML files
-
-	xmldom documentation: https://github.com/xmldom/xmldom
-
 */
 
 const joinxmlfiles = (...args) => {
@@ -35,9 +33,10 @@ const joinxmlfiles = (...args) => {
             // console.log(fileString);
             const parser = new DOMParser();
             const xmlFile = parser.parseFromString(fileString, 'text/xml');
-            for (i = 0; i < xmlFile.childNodes.length; i++) {
-                if (xmlFile.childNodes[i].nodeType == 1) {
-                    xmlJoined.appendChild(xmlFile.childNodes[i]);
+            const xNodes = xmlFile.childNodes;
+            for (i = 0; i < xNodes.length; i++) {
+                if (xNodes[i].nodeType == 1) {
+                    xmlJoined.appendChild(xNodes[i]);
                 }
             }
         }
