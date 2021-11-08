@@ -1,9 +1,3 @@
-/*  **** TODO *****
-
-Processes lastChild node, but is duplicating. Resolve.
-
-*/
-
 const fs = require('fs');
 const path = require('path');
 const { DOMParser, DOMImplementation } = require('@xmldom/xmldom');
@@ -39,7 +33,7 @@ const getDataFromFiles = (dir) => {
 		const fSize = stats["size"];
 		if (fSize > 0 && fileName.match(/\.xml$/)) {
 			const fileString = fs.readFileSync(`${dir}${fileName}`, 'utf-8');
-			console.log(fileString);
+			// console.log(fileString);
 			const parser = new DOMParser();
 			const xmlFile = parser.parseFromString(fileString, 'text/xml');
 			const xmlBody = xmlFile.lastChild;
