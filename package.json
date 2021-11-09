@@ -22,5 +22,9 @@
   "homepage": "https://github.com/nullish/joinxmlfiles#readme",
   "dependencies": {
     "@xmldom/xmldom": "^0.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
