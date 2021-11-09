@@ -9,5 +9,5 @@ The function receives one argument, the path to a folder, and returns a DOM obje
 ```JavaScript
 const joinxmlfiles = require('joinxmlfiles');
 const mergedOutput = joinxmlfiles('./directory/of/xmlfiles/');
-console.log(mergeOuput.toString()); // Ouputs merged result as string
+console.log(mergedOuput.toString()); // Ouputs merged result as string
 ```
