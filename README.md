@@ -1,54 +1,13 @@
-# JoinJSON
+# JoinXMLfiles
 
-Receives one or mode JSON files and joins them into a single file.
+Merges xml files from a single local directory.
 
-Each file is captured as a Javascript object. There's no attempt to match elements in one object to those in another.
+The function receives one argument, the path to a folder, and returns a DOM object.
 
-The script receives one argument, the path to a folder, and outputs a file called `manifest.json` to the same folder. It can be called either as a function or from the command line.
+## Usage
 
-## Example
-
-### File 1
-
-```javascript
-{
-  "file": "1",
-  "contents": [
-    "a",
-    "b"
-  ]
-}
-```
-
-### File 2
-
-```javascript
-{
-  "file": "2",
-  "contents": [
-    "b",
-    "c"
-  ]
-}
-```
-
-### Output
-
-```javascript
-[
-  {
-    "file": "1",
-    "contents": [
-      "a",
-      "b"
-    ]
-  },
-  {
-    "file": "2",
-    "contents": [
-      "b",
-      "c"
-    ]
-  }
-]
+```JavaScript
+const joinxmlfiles = require('joinxmlfiles');
+const mergedOutput = joinxmlfiles('./directory/of/xmlfiles/');
+console.log(mergeOuput.toString()); // Ouputs merged result as string
 ```
