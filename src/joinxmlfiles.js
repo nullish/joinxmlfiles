@@ -1,27 +1,18 @@
 /* **
-	* @param {string} dir - directory of XML files
+* @param {string} dir - directory of XML files
 
-	xmldom documentation: https://github.com/xmldom/xmldom
+xmldom documentation: https://github.com/xmldom/xmldom
 
 */
 const fs = require('fs');
-    const path = require('path');
-    const {
-        DOMParser,
-        DOMImplementation
-    } = require('@xmldom/xmldom');
-
-/* ***** TODO
-
-- Access from root
-- Annotations
-
-******
-*/
+const {
+    DOMParser,
+    DOMImplementation,
+} = require('@xmldom/xmldom');
 
 const joinxmlfiles = (...args) => {
-    const dir = args[0] || process.argv[2]
-    let xmlJoined = new DOMImplementation().createDocument();
+    const dir = args[0] || process.argv[2];
+    const xmlJoined = new DOMImplementation().createDocument();
     const fileNames = fs.readdirSync(dir);
     fileNames.forEach(fileName => {
 
@@ -42,6 +33,6 @@ const joinxmlfiles = (...args) => {
         }
     });
     return xmlJoined;
-}
+};
 
 module.exports = joinxmlfiles;
