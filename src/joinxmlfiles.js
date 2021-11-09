@@ -44,4 +44,4 @@ const joinxmlfiles = (...args) => {
     return xmlJoined;
 }
 
-module.exports = joinxmlfiles
+module.exports = joinxmlfiles;
