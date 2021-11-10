@@ -2,7 +2,7 @@
   "name": "joinxmlfiles",
   "version": "1.0.2",
   "description": "Simple NodeJS tool for joining local XML files",
-  "main": "demo.js",
+  "main": "joinxmlfiles.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
