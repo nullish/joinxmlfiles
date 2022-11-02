@@ -1,6 +1,6 @@
 {
   "name": "joinxmlfiles",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple NodeJS tool for joining local XML files",
   "main": "joinxmlfiles.js",
   "scripts": {
