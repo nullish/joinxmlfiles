@@ -13,7 +13,12 @@ const {
 const joinxmlfiles = (...args) => {
     const dir = args[0] || process.argv[2];
     // Create empty document object to receive merged files
-    const xmlJoined = new DOMImplementation().createDocument();
+    const xmlDoc = new DOMImplementation().createDocument();
+    // Create element to wrap around child elements
+    const el = xmlDoc.createElement("xml");
+    el.setAttribute("id", "xml-joined");
+    xmlDoc.appendChild(el);
+
     const fileNames = fs.readdirSync(dir);
     fileNames.forEach(fileName => {
 
@@ -28,12 +33,12 @@ const joinxmlfiles = (...args) => {
             const xNodes = xmlFile.childNodes;
             for (i = 0; i < xNodes.length; i++) {
                 if (xNodes[i].nodeType == 1) {
-                    xmlJoined.appendChild(xNodes[i]);
+                    xmlDoc.getElementById("xml-joined").appendChild(xNodes[i]);
                 }
             }
         }
     });
-    return xmlJoined;
+    return xmlDoc;
 };
 
 module.exports = joinxmlfiles;
